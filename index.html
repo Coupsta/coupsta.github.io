@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dev Portfolio</title>
+<meta name="description" content="Roblox developer portfolio">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<script>
+/* ============================================================
+   EDIT YOUR INFO HERE — everything on the page comes from this.
+   ============================================================ */
+const ME = {
+  name: "Duglas",
+  role: "Roblox Developer",
+  tagline: "I build combat, movement and the tools behind them, from Blender pipelines to server code.",
+  years: "9",                 // years coding — leave "" to hide
+  timezone: "CST (GMT-5)",
+  available: true,            // shows "Open for commissions"
+  discord: "Coupstaaa",
+  avatar: "",                 // e.g. "avatar.png" (put the image next to index.html)
+  about: [
+    "I'm a 22-year-old developer and I've been coding since I was 13. I've finished two years of computer science, with one more year before I graduate.",
+    "What I love most is understanding how systems connect, then building them from scratch. It's why I love physiology: the human body is the best example there is of systems depending on each other. My games work the same way, with pieces that feed into one another: combat that drives animation, ships that flood and slow down, markets that react to players.",
+    "Away from the code I play basketball and make music. Producing tracks in my free time scratches the same itch: building something from nothing, one layer at a time."
+  ],
+  tools: ["Luau", "Roblox Studio", "Blender", "Python"],
+
+  // Big numbers shown under the hero.
+  highlights: [
+    { n: "2",   l: "games in development" },
+    { n: "10",  l: "major systems shipped" },
+    { n: "198", l: "animations from my own pipeline" },
+    { n: "423", l: "automated combat checks passing" }
+  ],
+
+  // Games: the filter buttons and Explorer folders come from these.
+  games: [
+    { name: "Black Sun", blurb: "Melee combat game" },
+    { name: "Ruglas",    blurb: "Pirate RPG · designer and developer" }
+  ],
+
+  // Projects: videoId is the part after "watch?v=" in a YouTube link.
+  // Leave it "" until you have a clip — a placeholder tile shows instead.
+  // kind controls the Explorer icon: "script", "gui" or "model".
+  // noClip: true shows the card as text only, with no video tile.
+  projects: [
+    { game: "Black Sun", kind: "script", title: "Melee Combat System", videoId: "", link: "",
+      desc: "Seven weapons, each with its own 4-hit combo and heavy attack, plus blocking, parrying and posture-based guard breaks.",
+      stats: ["7 weapons", "423/423 tests", "Server-authoritative"],
+      more: "Players can be downed, carried and executed, and a combat tag stops escapes mid-fight. The server makes every hit decision so players can't cheat, and an automated test suite checks the whole system." },
+    { game: "Black Sun", kind: "script", title: "Combat Animation Kit", videoId: "", link: "",
+      desc: "71 combat animations for all 7 weapons, made with my own Blender animation kit and played by the game's own code.",
+      stats: ["71 combat clips", "98 total", "Auto clip checks"],
+      more: "Every attack, block and weapon pose is covered, inside a library of 98 animations that includes movement. The kit checks every clip for weapons passing through the floor or the body." },
+    { game: "Black Sun", kind: "script", title: "Parkour Movement", videoId: "", link: "",
+      desc: "Sprinting, sliding, vaulting, a dash with brief invincibility, and a momentum-based wall run.",
+      stats: ["~19 studs wall run", "i-frame dash", "Tuned in play"],
+      more: "You hit the wall at a sprint, run up it while losing speed, and grab the ledge if you reach it. Each rule was tuned by playing: a full sprint carries you about 19 studs up a wall." },
+    { game: "Black Sun", kind: "model", title: "Weapon Set", videoId: "", link: "",
+      desc: "Sword, greatsword, spear, axe, dagger and hammer, built in code from concept sheets through to the player's hand.",
+      stats: ["6 weapons", "Concept to in-game", "Play-tested"],
+      more: "Shapes and painted metal, leather and wood were all generated in code. After import they were resized through play-testing so they read well in a blocky hand, then tested in combat." },
+    { game: "Black Sun", kind: "gui", title: "Equipment Screen & HUD", videoId: "", link: "",
+      desc: "Press E for a menu where a live copy of your character stands before a black-sun eclipse, holding what you hold.",
+      stats: ["Live 3D preview", "3D weapon icons", "All art in code"],
+      more: "Icons are rendered from the real weapon models, and ratings are worked out from the combat numbers. A custom hotbar and matching health, stamina and posture bars complete the HUD." },
+
+    { game: "Ruglas", kind: "script", title: "Melee Combat, Live in Game", videoId: "", link: "",
+      desc: "Server-authoritative combat with 4-hit combos across three weapon classes, parries, guard breaks, blade clashes, feints and a 3-charge dodge-dash.",
+      stats: ["80 ms lag tolerance", "−150–200 ms delay", "Shared player/AI core"],
+      more: "Parry and perfect-parry windows allow for up to 80 ms of lag. Client-side prediction removed a 150–200 ms delay on chained attacks, and players and AI enemies run on the same combat core." },
+    { game: "Ruglas", kind: "script", title: "Python → Blender → Roblox Pipeline", noClip: true, videoId: "", link: "",
+      desc: "A toolkit that poses characters, keys the animation in Blender and exports it straight to the game.",
+      stats: ["100 animations", "Clipping checks", "Tested at 8–60 Hz"],
+      more: "It produced 39 combat animations, 27 weapon-specific walk and run cycles and 34 movement animations. It checks for weapons clipping through the body, and an offline harness runs the movement code at 60, 20, 15 and 8 updates per second." },
+    { game: "Ruglas", kind: "model", title: "Naval Simulation", videoId: "", link: "",
+      desc: "Three walkable multi-deck ships where damage opens leaks that flood the hull and cut speed by up to 55%.",
+      stats: ["3 ships", "726 collision volumes", "Up to −55% speed"],
+      more: "Each ship is up to 50,000 triangles. Rogue-wave damage depends on the angle of impact, crews patch leaks with planks, and sunk ships release their cargo as salvage." },
+    { game: "Ruglas", kind: "model", title: "Seven-Island Open World", noClip: true, videoId: "", link: "",
+      desc: "A 34,000-stud sea with seven hand-designed islands built from Blender meshes, tuned for streaming.",
+      stats: ["Join 80 s → 20 s", "182k → 38k parts", "7 islands"],
+      more: "About 182,000 parts in total. Streaming tuning cut join time from about 80 s to 20 s and the parts each device holds to about 38,000. Distant islands use low-detail stand-ins and off-screen NPCs sleep." },
+    { game: "Ruglas", kind: "script", title: "Player-Driven Trade Economy", noClip: true, videoId: "", link: "",
+      desc: "Seven markets and eight goods, with routes where riskier waters pay more and prices react to players.",
+      stats: ["7 markets", "−2% per crate", "3 save slots"],
+      more: "Each crate sold lowers that market's price by 2%, recovering 1.5% a minute, so no route stays the best for long. Progress saves through a session-locked save system with three character slots." }
+  ],
+
+  // Optional: your progress over time, oldest first. Leave [] to hide the section.
+  // Example: { when: "2025", what: "Started Ruglas", detail: "First open-world project." }
+  timeline: []
+};
+</script>
+
+<style>
+:root{
+  --night:#191733;
+  --panel:#221F42;
+  --panel-2:#2B2752;
+  --line:#3A3570;
+  --ink:#EEEAFF;
+  --muted:#A49FCB;
+  --lilac:#B7A4FF;
+  --peach:#FFC6A5;
+  --mint:#9FE8C9;
+  --display:"Bricolage Grotesque", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--night);
+  color:var(--ink);
+  font-family:var(--display);
+  font-size:17px;line-height:1.6;
+  overflow-x:hidden;
+}
+body::before{ /* soft dusk glow */
+  content:"";position:fixed;inset:-20% -10% auto -10%;height:90vh;z-index:-1;
+  background:
+    radial-gradient(40% 50% at 20% 30%, rgba(183,164,255,.22), transparent 70%),
+    radial-gradient(35% 45% at 85% 15%, rgba(255,198,165,.16), transparent 70%);
+  pointer-events:none;
+}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--peach);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(25,23,51,.7);border-bottom:1px solid rgba(58,53,112,.6)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-weight:800;font-size:20px;text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--lilac),var(--peach));background-size:cover;background-position:center}
+nav ul{list-style:none;display:flex;gap:6px}
+nav ul a{text-decoration:none;color:var(--muted);padding:8px 14px;border-radius:999px;font-size:15px;transition:color .2s,background .2s}
+nav ul a:hover{color:var(--ink);background:var(--panel)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;padding:96px 0 112px}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--mint);background:rgba(159,232,201,.08);border:1px solid rgba(159,232,201,.25);padding:6px 14px;border-radius:999px;margin-bottom:28px}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(159,232,201,.6);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 8px rgba(159,232,201,0)}100%{box-shadow:0 0 0 0 rgba(159,232,201,0)}}
+.hero h1{font-size:clamp(56px,9vw,120px);line-height:.92;font-weight:800;letter-spacing:-.035em}
+.hero h1 .role{display:block;font-weight:300;font-size:.42em;letter-spacing:-.02em;color:var(--lilac);margin-top:14px}
+.hero p.tag{font-size:21px;color:var(--muted);max-width:30ch;margin:28px 0 36px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;padding:14px 24px;border-radius:14px;border:1px solid var(--line);background:var(--panel);transition:transform .15s,background .2s;cursor:pointer;font-family:inherit;font-size:16px;color:var(--ink)}
+.btn:hover{transform:translateY(-2px);background:var(--panel-2)}
+.btn.primary{background:var(--lilac);color:#1d1840;border-color:transparent}
+.btn.primary:hover{background:#c8b9ff}
+
+/* the explorer — the signature piece */
+.explorer{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.6),0 0 0 6px rgba(183,164,255,.05)}
+.explorer .bar{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line);font-size:13px;color:var(--muted)}
+.explorer .bar span{display:flex;gap:6px}
+.explorer .bar b{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.tree{font-family:var(--mono);font-size:13.5px;padding:12px 8px 16px;list-style:none}
+.tree li{opacity:0;transform:translateX(-6px);animation:in .35s forwards}
+.tree li>button,.tree li>div{display:flex;align-items:center;gap:8px;width:100%;padding:6px 10px;border-radius:8px;background:none;border:0;color:var(--ink);font:inherit;text-align:left;cursor:pointer}
+.tree li>button:hover{background:var(--panel-2)}
+.tree li>button:hover .open{opacity:1}
+.tree .ico{width:16px;height:16px;border-radius:4px;flex:none}
+.tree .folder{background:var(--peach)}
+.tree .script{background:var(--lilac);border-radius:3px 8px 3px 3px}
+.tree .gui{background:var(--mint);border-radius:50%}
+.tree .model{background:var(--peach);transform:rotate(45deg) scale(.8);border-radius:3px}
+.tree .chev{color:var(--muted);width:10px}
+.tree .open{margin-left:auto;font-size:11px;color:var(--muted);opacity:0;transition:opacity .2s}
+.tree .d1{padding-left:28px}.tree .d2{padding-left:48px}
+.tree .dim{color:var(--muted)}
+@keyframes in{to{opacity:1;transform:none}}
+
+/* highlights band */
+.band{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:22px;background:var(--panel);margin-bottom:96px;overflow:hidden}
+.band div{padding:26px 28px;border-left:1px solid var(--line)}
+.band div:first-child{border-left:0}
+.band b{display:block;font-size:clamp(40px,5vw,58px);font-weight:800;letter-spacing:-.04em;line-height:1;background:linear-gradient(120deg,var(--ink),var(--lilac));-webkit-background-clip:text;background-clip:text;color:transparent}
+.band span{color:var(--muted);font-size:14.5px;display:block;margin-top:8px;max-width:20ch;line-height:1.35}
+
+/* sections */
+section{padding:96px 0;border-top:1px solid rgba(58,53,112,.5)}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:44px;flex-wrap:wrap}
+h2{font-size:clamp(38px,5vw,60px);font-weight:800;letter-spacing:-.03em;line-height:1}
+.head p{color:var(--muted);max-width:36ch}
+
+/* filters */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.chip{font:inherit;font-size:14px;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--muted);cursor:pointer;transition:all .2s}
+.chip:hover{color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--night);border-color:var(--ink)}
+
+/* projects */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.proj{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.proj.big{grid-column:span 2}
+.proj.hide{display:none}
+.thumb{position:relative;aspect-ratio:16/9;background:var(--panel-2);border:0;padding:0;cursor:pointer;display:block;width:100%;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.thumb:hover img{transform:scale(1.04)}
+.thumb .ph{position:absolute;inset:0;display:grid;place-items:center;font-size:72px;font-weight:800;color:rgba(25,23,51,.55)}
+.thumb .play{position:absolute;left:16px;bottom:16px;background:rgba(25,23,51,.8);backdrop-filter:blur(6px);color:var(--ink);font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;font-family:var(--display)}
+.proj .body{padding:20px 22px 24px;display:flex;flex-direction:column;flex:1}
+.proj.text{border-top:3px solid var(--peach)}
+.proj.text .body{padding-top:26px}
+.proj.text h3{font-size:26px}
+.proj.text p{font-size:16px}
+.proj.text .chips{order:9;margin-top:auto;padding-top:16px}
+.proj .game{font-size:13px;color:var(--peach);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chips span{font-size:12.5px;font-weight:600;padding:5px 10px;border-radius:8px;background:rgba(183,164,255,.12);color:var(--lilac)}
+.proj details{margin-top:14px;font-size:15px;color:var(--muted)}
+.proj summary{cursor:pointer;color:var(--ink);font-weight:600;font-size:14px;list-style:none;display:inline-flex;align-items:center;gap:6px}
+.proj summary::-webkit-details-marker{display:none}
+.proj summary::before{content:"+";display:inline-grid;place-items:center;width:20px;height:20px;border-radius:6px;background:var(--panel-2);transition:transform .2s}
+.proj details[open] summary::before{content:"−"}
+.proj details p{margin-top:10px}
+.gamehead{grid-column:1/-1;display:flex;align-items:baseline;gap:14px;margin:18px 0 -4px}
+.gamehead h3{font-size:30px;font-weight:800;letter-spacing:-.02em}
+.gamehead span{color:var(--muted)}
+.gamehead.hide{display:none}
+.proj h3{margin-top:2px;font-size:22px;font-weight:700;letter-spacing:-.01em;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.proj h3 small{font-size:12px;font-weight:500;color:var(--peach);white-space:nowrap}
+.proj p{color:var(--muted);margin-top:6px;font-size:15.5px}
+.proj a.ext{display:inline-block;margin-top:12px;font-size:14px;color:var(--lilac)}
+
+/* timeline — this IS a sequence, so it's numbered by date */
+.tl{list-style:none;position:relative;max-width:720px}
+.tl::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--lilac),var(--peach))}
+.tl li{position:relative;padding:0 0 40px 44px}
+.tl li::before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;background:var(--night);border:3px solid var(--lilac)}
+.tl li:last-child::before{background:var(--peach);border-color:var(--peach)}
+.tl .when{font-size:14px;color:var(--peach);font-weight:600}
+.tl h3{font-size:24px;font-weight:700;letter-spacing:-.01em;margin:2px 0 4px}
+.tl p{color:var(--muted)}
+
+/* about */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.about .copy p{font-size:20px;margin-bottom:18px;max-width:38ch}
+.about .copy p+p{color:var(--muted)}
+.stats{display:flex;gap:40px;margin-top:32px}
+.stats div b{display:block;font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.stats div span{color:var(--muted);font-size:14px}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start}
+.tools h3{width:100%;font-size:18px;font-weight:600;margin-bottom:8px;color:var(--muted)}
+.tools span{padding:12px 18px;border-radius:14px;background:var(--panel);border:1px solid var(--line);font-weight:500}
+
+/* contact */
+.contact{background:linear-gradient(135deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:28px;padding:64px 48px;text-align:center}
+.contact h2{font-size:clamp(44px,7vw,84px)}
+.contact p{color:var(--muted);max-width:44ch;margin:18px auto 32px}
+.dc{display:inline-flex;align-items:center;gap:14px;background:var(--night);border:1px solid var(--line);border-radius:16px;padding:10px 10px 10px 20px}
+.dc code{font-family:var(--mono);font-size:16px}
+footer{padding:40px 0 56px;color:var(--muted);font-size:14px;text-align:center}
+
+/* lightbox */
+dialog{border:0;padding:0;background:transparent;max-width:min(960px,92vw);width:100%;margin:auto}
+dialog::backdrop{background:rgba(15,13,35,.85);backdrop-filter:blur(6px)}
+dialog .vid{aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000}
+dialog iframe{width:100%;height:100%;border:0}
+dialog .close{position:absolute;top:-48px;right:0}
+dialog .inner{position:relative}
+
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;background:var(--mint);color:#13302a;font-weight:600;padding:12px 20px;border-radius:12px;transition:all .3s;pointer-events:none;z-index:50}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;padding:56px 0 72px;gap:44px}
+  .grid{grid-template-columns:1fr 1fr}
+  .proj.big{grid-column:span 2}
+  .about{grid-template-columns:1fr;gap:40px}
+  .band{grid-template-columns:1fr 1fr}
+  .band div:nth-child(3){border-left:0}
+  .band div:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  nav ul a{padding:8px 10px;font-size:14px}
+  nav ul li:nth-child(2){display:none}
+  .grid{grid-template-columns:1fr}
+  .proj.big{grid-column:auto}
+  .band div{padding:20px 18px}
+  section{padding:72px 0}
+  .contact{padding:48px 22px}
+  .dc{flex-wrap:wrap;justify-content:center;padding:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .tree li{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a href="#top" class="brand"><span class="av" id="navAv"></span><span id="navName"></span></a>
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li id="navProg"><a href="#progress">Progress</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div></nav>
+
+<main id="top" class="wrap">
+  <header class="hero">
+    <div>
+      <span class="status" id="status" hidden><i></i>Open for commissions</span>
+      <h1><span id="heroName"></span><span class="role" id="heroRole"></span></h1>
+      <p class="tag" id="heroTag"></p>
+      <div class="btns">
+        <a class="btn primary" href="#work">See my work</a>
+        <a class="btn" href="#contact">Hire me</a>
+      </div>
+    </div>
+    <div class="explorer" aria-label="Project explorer">
+      <div class="bar">Explorer <span><b></b><b></b><b></b></span></div>
+      <ul class="tree" id="tree"></ul>
+    </div>
+  </header>
+
+  <div class="band" id="band"></div>
+
+  <section id="work">
+    <div class="head">
+      <h2>Things I've built</h2>
+      <p>Ten systems across two games. Open any card for the details.</p>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Filter projects"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="progress">
+    <div class="head">
+      <h2>How I got here</h2>
+      <p>From my first obby to the systems I build now.</p>
+    </div>
+    <ol class="tl" id="tl"></ol>
+  </section>
+
+  <section id="about" class="about">
+    <div class="copy">
+      <h2 style="margin-bottom:28px">About me</h2>
+      <div id="aboutText"></div>
+      <div class="stats">
+        <div id="yearsBox"><b id="statYears"></b><span>years coding</span></div>
+        <div><b id="statProj"></b><span>games built</span></div>
+      </div>
+    </div>
+    <div class="tools" id="tools"><h3>What I work with</h3></div>
+  </section>
+
+  <section id="contact" style="border:0">
+    <div class="contact">
+      <h2>Let's make your game.</h2>
+      <p>Send me what you need, what you already have, and your deadline. I'll reply with a price and timeframe.</p>
+      <div class="dc">
+        <span class="dim" style="color:var(--muted)">Discord</span>
+        <code id="dcName"></code>
+        <button class="btn primary" id="copyBtn" style="padding:10px 18px">Copy username</button>
+      </div>
+      <p style="margin:20px auto 0;font-size:14px" id="tz"></p>
+    </div>
+  </section>
+</main>
+
+<footer id="foot"></footer>
+
+<dialog id="lb">
+  <div class="inner">
+    <button class="btn close" id="lbClose">Close</button>
+    <div class="vid" id="lbVid"></div>
+  </div>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const tints = ["var(--lilac)","var(--peach)","var(--mint)"];
+
+document.title = `${ME.name} · ${ME.role}`;
+$("navName").textContent = ME.name;
+$("heroName").textContent = ME.name;
+$("heroRole").textContent = ME.role;
+$("heroTag").textContent = ME.tagline;
+$("status").hidden = !ME.available;
+if (ME.years) $("statYears").textContent = ME.years + "+"; else $("yearsBox").remove();
+$("statProj").textContent = ME.games.length;
+$("band").innerHTML = ME.highlights.map(h => `<div><b>${esc(h.n)}</b><span>${esc(h.l)}</span></div>`).join("");
+if (!ME.timeline.length) { $("progress").remove(); $("navProg").remove(); }
+$("dcName").textContent = ME.discord;
+$("tz").textContent = "Timezone: " + ME.timezone;
+$("foot").textContent = `${ME.name} · ${ME.role} · ${new Date().getFullYear()}`;
+if (ME.avatar) $("navAv").style.backgroundImage = `url("${ME.avatar}")`;
+$("aboutText").innerHTML = ME.about.map(p => `<p>${esc(p)}</p>`).join("");
+ME.tools.forEach(t => $("tools").insertAdjacentHTML("beforeend", `<span>${esc(t)}</span>`));
+
+/* explorer tree: one folder per game, like Studio */
+const groups = ME.games.map(g => g.name);
+let rows = [`<li><div><span class="chev">▾</span><span class="ico folder"></span>${esc(ME.name)}'s Portfolio</div></li>`];
+groups.forEach(g => {
+  rows.push(`<li><div class="d1"><span class="chev">▾</span><span class="ico folder"></span>${esc(g.replace(/\s+/g,""))}</div></li>`);
+  ME.projects.forEach((p, i) => {
+    if (p.game !== g) return;
+    const ico = p.kind === "gui" ? "gui" : p.kind === "model" ? "model" : "script";
+    const nm = p.title.replace(/[^A-Za-z0-9]+/g, "");
+    rows.push(`<li><button class="d2" data-i="${i}"><span class="chev"></span><span class="ico ${ico}"></span>${esc(nm)}<span class="open">open</span></button></li>`);
+  });
+});
+$("tree").innerHTML = rows.join("");
+[...$("tree").children].forEach((li, n) => li.style.animationDelay = (200 + n * 55) + "ms");
+$("tree").addEventListener("click", e => {
+  const b = e.target.closest("button[data-i]");
+  if (!b) return;
+  const card = document.querySelector(`.proj[data-i="${b.dataset.i}"]`);
+  setFilter("All");
+  const d = card.querySelector("details"); if (d) d.open = true;
+  card.scrollIntoView({ behavior: "smooth", block: "center" });
+});
+
+/* project cards, grouped under a heading per game */
+let html = "";
+ME.games.forEach((g, gi) => {
+  html += `<div class="gamehead" data-game="${esc(g.name)}"><h3>${esc(g.name)}</h3><span>${esc(g.blurb)}</span></div>`;
+  ME.projects.forEach((p, i) => {
+    if (p.game !== g.name) return;
+    const first = ME.projects.findIndex(q => q.game === g.name) === i;
+    const media = p.videoId
+      ? `<img src="https://i.ytimg.com/vi/${esc(p.videoId)}/hqdefault.jpg" alt="${esc(p.title)} gameplay" loading="lazy">`
+      : `<span class="ph" style="background:${tints[(i + gi) % 3]}">${esc(p.title[0])}</span>`;
+    const label = p.videoId ? "▶ Watch" : "Clip coming soon";
+    html += `<article class="proj${first ? " big" : ""}${p.noClip ? " text" : ""}" data-i="${i}" data-game="${esc(p.game)}">
+      ${p.noClip ? "" : `<button class="thumb" data-vid="${esc(p.videoId)}" aria-label="Watch ${esc(p.title)}">${media}<span class="play">${label}</span></button>`}
+      <div class="body">
+        <span class="game">${esc(p.game)}</span>
+        <h3>${esc(p.title)}</h3>
+        <p>${esc(p.desc)}</p>
+        <div class="chips">${(p.stats || []).map(x => `<span>${esc(x)}</span>`).join("")}</div>
+        ${p.more ? (p.noClip ? `<p>${esc(p.more)}</p>` : `<details><summary>More details</summary><p>${esc(p.more)}</p></details>`) : ""}
+        ${p.link ? `<a class="ext" href="${esc(p.link)}" target="_blank" rel="noopener">Play it on Roblox ↗</a>` : ""}
+      </div>
+    </article>`;
+  });
+});
+$("grid").innerHTML = html;
+
+/* filters */
+["All", ...groups].forEach(g => $("filters").insertAdjacentHTML("beforeend",
+  `<button class="chip" aria-pressed="${g === "All"}" data-g="${esc(g)}">${esc(g)}</button>`));
+function setFilter(g){
+  document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c.dataset.g === g));
+  document.querySelectorAll(".proj,.gamehead").forEach(c => c.classList.toggle("hide", g !== "All" && c.dataset.game !== g));
+}
+$("filters").addEventListener("click", e => { const c = e.target.closest(".chip"); if (c) setFilter(c.dataset.g); });
+
+/* timeline */
+if ($("tl")) $("tl").innerHTML = ME.timeline.map(t =>
+  `<li><div class="when">${esc(t.when)}</div><h3>${esc(t.what)}</h3><p>${esc(t.detail)}</p></li>`).join("");
+
+/* video lightbox */
+const lb = $("lb");
+$("grid").addEventListener("click", e => {
+  const t = e.target.closest(".thumb");
+  if (!t) return;
+  if (!t.dataset.vid) { toast("Add a YouTube clip for this project to play it here"); return; }
+  $("lbVid").innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${t.dataset.vid}?autoplay=1" allow="autoplay; encrypted-media; fullscreen" allowfullscreen title="Project video"></iframe>`;
+  lb.showModal();
+});
+const closeLb = () => { lb.close(); };
+$("lbClose").onclick = closeLb;
+lb.addEventListener("click", e => { if (e.target === lb) closeLb(); });
+lb.addEventListener("close", () => $("lbVid").innerHTML = "");
+
+/* copy discord */
+function toast(msg){ const t = $("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 2200); }
+$("copyBtn").onclick = async () => {
+  try { await navigator.clipboard.writeText(ME.discord); toast("Copied " + ME.discord); }
+  catch { toast("Your Discord: " + ME.discord); }
+};
+</script>
+</body>
+</html>
