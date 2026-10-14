@@ -3,8 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dev Portfolio</title>
-<meta name="description" content="Roblox developer portfolio">
+<title>Duglas · Roblox Developer</title>
+<meta name="description" content="I build Roblox games and the systems that make them feel great to play. Combat, movement, UI and worlds from Black Sun and The Reach.">
+<meta property="og:title" content="Duglas · Roblox Developer">
+<meta property="og:description" content="I build Roblox games and the systems that make them feel great to play. Combat, movement, UI and worlds from Black Sun and The Reach.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://coupsta.github.io/">
+<meta name="theme-color" content="#B7A4FF">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -29,6 +34,10 @@ const ME = {
   ],
   tools: ["Luau", "Roblox Studio", "Blender", "Python"],
 
+  // Your showreel: paste the YouTube video ID (the part after "watch?v=").
+  // Leave "" until it's uploaded — a "coming soon" panel shows instead.
+  showreel: "",
+
   // Big numbers shown under the hero.
   highlights: [
     { n: "2",   l: "games in development" },
@@ -40,59 +49,56 @@ const ME = {
   // Games: the filter buttons and Explorer folders come from these.
   games: [
     { name: "Black Sun", blurb: "Melee combat game" },
-    { name: "Ruglas",    blurb: "Pirate RPG · designer and developer" }
+    { name: "The Reach",    blurb: "Pirate RPG · designer and developer" }
   ],
 
-  // Projects: videoId is the part after "watch?v=" in a YouTube link.
-  // Leave it "" until you have a clip — a placeholder tile shows instead.
-  // kind controls the Explorer icon: "script", "gui" or "model".
-  // noClip: true shows the card as text only, with no video tile.
+  // Projects. kind controls the Explorer icon: "script", "gui" or "model".
   projects: [
-    { game: "Black Sun", kind: "script", title: "Melee Combat System", videoId: "", link: "",
+    { game: "Black Sun", kind: "script", title: "Melee Combat System",
       desc: "Seven weapons, each with its own 4-hit combo and heavy attack, plus blocking, parrying and posture-based guard breaks.",
       stats: ["7 weapons", "423/423 tests", "Server-authoritative"],
       more: "Players can be downed, carried and executed, and a combat tag stops escapes mid-fight. The server makes every hit decision so players can't cheat, and an automated test suite checks the whole system." },
-    { game: "Black Sun", kind: "script", title: "Combat Animation Kit", videoId: "", link: "",
+    { game: "Black Sun", kind: "script", title: "Combat Animation Kit",
       desc: "71 combat animations for all 7 weapons, made with my own Blender animation kit and played by the game's own code.",
       stats: ["71 combat clips", "98 total", "Auto clip checks"],
       more: "Every attack, block and weapon pose is covered, inside a library of 98 animations that includes movement. The kit checks every clip for weapons passing through the floor or the body." },
-    { game: "Black Sun", kind: "script", title: "Parkour Movement", videoId: "", link: "",
+    { game: "Black Sun", kind: "script", title: "Parkour Movement",
       desc: "Sprinting, sliding, vaulting, a dash with brief invincibility, and a momentum-based wall run.",
       stats: ["~19 studs wall run", "i-frame dash", "Tuned in play"],
       more: "You hit the wall at a sprint, run up it while losing speed, and grab the ledge if you reach it. Each rule was tuned by playing: a full sprint carries you about 19 studs up a wall." },
-    { game: "Black Sun", kind: "model", title: "Weapon Set", videoId: "", link: "",
+    { game: "Black Sun", kind: "model", title: "Weapon Set",
       desc: "Sword, greatsword, spear, axe, dagger and hammer, built in code from concept sheets through to the player's hand.",
       stats: ["6 weapons", "Concept to in-game", "Play-tested"],
       more: "Shapes and painted metal, leather and wood were all generated in code. After import they were resized through play-testing so they read well in a blocky hand, then tested in combat." },
-    { game: "Black Sun", kind: "gui", title: "Equipment Screen & HUD", videoId: "", link: "",
+    { game: "Black Sun", kind: "gui", title: "Equipment Screen & HUD",
       desc: "Press E for a menu where a live copy of your character stands before a black-sun eclipse, holding what you hold.",
       stats: ["Live 3D preview", "3D weapon icons", "All art in code"],
       more: "Icons are rendered from the real weapon models, and ratings are worked out from the combat numbers. A custom hotbar and matching health, stamina and posture bars complete the HUD." },
 
-    { game: "Ruglas", kind: "script", title: "Melee Combat, Live in Game", videoId: "", link: "",
+    { game: "The Reach", kind: "script", title: "Melee Combat, Live in Game",
       desc: "Server-authoritative combat with 4-hit combos across three weapon classes, parries, guard breaks, blade clashes, feints and a 3-charge dodge-dash.",
       stats: ["80 ms lag tolerance", "−150–200 ms delay", "Shared player/AI core"],
       more: "Parry and perfect-parry windows allow for up to 80 ms of lag. Client-side prediction removed a 150–200 ms delay on chained attacks, and players and AI enemies run on the same combat core." },
-    { game: "Ruglas", kind: "script", title: "Python → Blender → Roblox Pipeline", noClip: true, videoId: "", link: "",
+    { game: "The Reach", kind: "script", title: "Python → Blender → Roblox Pipeline",
       desc: "A toolkit that poses characters, keys the animation in Blender and exports it straight to the game.",
       stats: ["100 animations", "Clipping checks", "Tested at 8–60 Hz"],
       more: "It produced 39 combat animations, 27 weapon-specific walk and run cycles and 34 movement animations. It checks for weapons clipping through the body, and an offline harness runs the movement code at 60, 20, 15 and 8 updates per second." },
-    { game: "Ruglas", kind: "model", title: "Naval Simulation", videoId: "", link: "",
+    { game: "The Reach", kind: "model", title: "Naval Simulation",
       desc: "Three walkable multi-deck ships where damage opens leaks that flood the hull and cut speed by up to 55%.",
       stats: ["3 ships", "726 collision volumes", "Up to −55% speed"],
       more: "Each ship is up to 50,000 triangles. Rogue-wave damage depends on the angle of impact, crews patch leaks with planks, and sunk ships release their cargo as salvage." },
-    { game: "Ruglas", kind: "model", title: "Seven-Island Open World", noClip: true, videoId: "", link: "",
+    { game: "The Reach", kind: "model", title: "Seven-Island Open World",
       desc: "A 34,000-stud sea with seven hand-designed islands built from Blender meshes, tuned for streaming.",
       stats: ["Join 80 s → 20 s", "182k → 38k parts", "7 islands"],
       more: "About 182,000 parts in total. Streaming tuning cut join time from about 80 s to 20 s and the parts each device holds to about 38,000. Distant islands use low-detail stand-ins and off-screen NPCs sleep." },
-    { game: "Ruglas", kind: "script", title: "Player-Driven Trade Economy", noClip: true, videoId: "", link: "",
+    { game: "The Reach", kind: "script", title: "Player-Driven Trade Economy",
       desc: "Seven markets and eight goods, with routes where riskier waters pay more and prices react to players.",
       stats: ["7 markets", "−2% per crate", "3 save slots"],
       more: "Each crate sold lowers that market's price by 2%, recovering 1.5% a minute, so no route stays the best for long. Progress saves through a session-locked save system with three character slots." }
   ],
 
   // Optional: your progress over time, oldest first. Leave [] to hide the section.
-  // Example: { when: "2025", what: "Started Ruglas", detail: "First open-world project." }
+  // Example: { when: "2025", what: "Started The Reach", detail: "First open-world project." }
   timeline: []
 };
 </script>
@@ -181,6 +187,19 @@ nav ul a:hover{color:var(--ink);background:var(--panel)}
 .band div:first-child{border-left:0}
 .band b{display:block;font-size:clamp(40px,5vw,58px);font-weight:800;letter-spacing:-.04em;line-height:1;background:linear-gradient(120deg,var(--ink),var(--lilac));-webkit-background-clip:text;background-clip:text;color:transparent}
 .band span{color:var(--muted);font-size:14.5px;display:block;margin-top:8px;max-width:20ch;line-height:1.35}
+
+/* showreel */
+.reel{position:relative;aspect-ratio:16/9;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:
+  radial-gradient(60% 80% at 25% 30%, rgba(183,164,255,.35), transparent 70%),
+  radial-gradient(50% 70% at 80% 75%, rgba(255,198,165,.28), transparent 70%), var(--panel)}
+.reel iframe,.reel img{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover}
+.reel button{position:absolute;inset:0;width:100%;border:0;background:none;cursor:pointer;display:grid;place-items:center;color:var(--ink);font:inherit}
+.reel .pl{display:inline-flex;align-items:center;gap:14px;background:rgba(25,23,51,.75);backdrop-filter:blur(8px);padding:16px 28px 16px 18px;border-radius:999px;font-weight:700;font-size:18px;transition:transform .2s}
+.reel button:hover .pl{transform:scale(1.04)}
+.reel .pl i{width:44px;height:44px;border-radius:50%;background:var(--lilac);display:grid;place-items:center;font-style:normal;color:#1d1840}
+.reel .soon{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px}
+.reel .soon b{display:block;font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.03em}
+.reel .soon span{color:var(--muted)}
 
 /* sections */
 section{padding:96px 0;border-top:1px solid rgba(58,53,112,.5)}
@@ -280,7 +299,7 @@ dialog .inner{position:relative}
 @media (max-width:600px){
   .wrap{padding:0 16px}
   nav ul a{padding:8px 10px;font-size:14px}
-  nav ul li:nth-child(2){display:none}
+  nav ul li:nth-child(1),nav ul li:nth-child(3){display:none}
   .grid{grid-template-columns:1fr}
   .proj.big{grid-column:auto}
   .band div{padding:20px 18px}
@@ -300,6 +319,7 @@ dialog .inner{position:relative}
 <nav><div class="wrap">
   <a href="#top" class="brand"><span class="av" id="navAv"></span><span id="navName"></span></a>
   <ul>
+    <li><a href="#reel">Reel</a></li>
     <li><a href="#work">Work</a></li>
     <li id="navProg"><a href="#progress">Progress</a></li>
     <li><a href="#about">About</a></li>
@@ -314,8 +334,8 @@ dialog .inner{position:relative}
       <h1><span id="heroName"></span><span class="role" id="heroRole"></span></h1>
       <p class="tag" id="heroTag"></p>
       <div class="btns">
-        <a class="btn primary" href="#work">See my work</a>
-        <a class="btn" href="#contact">Hire me</a>
+        <a class="btn primary" href="#reel">Watch the showreel</a>
+        <a class="btn" href="#work">See my work</a>
       </div>
     </div>
     <div class="explorer" aria-label="Project explorer">
@@ -326,10 +346,19 @@ dialog .inner{position:relative}
 
   <div class="band" id="band"></div>
 
+
+  <section id="reel" style="border:0;padding-top:0">
+    <div class="head">
+      <h2>Showreel</h2>
+      <p>Everything below, running in game.</p>
+    </div>
+    <div class="reel" id="reelBox"></div>
+  </section>
+
   <section id="work">
     <div class="head">
       <h2>Things I've built</h2>
-      <p>Ten systems across two games. Open any card for the details.</p>
+      <p>Ten systems across two games, and the numbers behind them.</p>
     </div>
     <div class="filters" id="filters" role="group" aria-label="Filter projects"></div>
     <div class="grid" id="grid"></div>
@@ -371,12 +400,6 @@ dialog .inner{position:relative}
 
 <footer id="foot"></footer>
 
-<dialog id="lb">
-  <div class="inner">
-    <button class="btn close" id="lbClose">Close</button>
-    <div class="vid" id="lbVid"></div>
-  </div>
-</dialog>
 <div class="toast" id="toast" role="status"></div>
 
 <script>
@@ -431,18 +454,13 @@ ME.games.forEach((g, gi) => {
   ME.projects.forEach((p, i) => {
     if (p.game !== g.name) return;
     const first = ME.projects.findIndex(q => q.game === g.name) === i;
-    const media = p.videoId
-      ? `<img src="https://i.ytimg.com/vi/${esc(p.videoId)}/hqdefault.jpg" alt="${esc(p.title)} gameplay" loading="lazy">`
-      : `<span class="ph" style="background:${tints[(i + gi) % 3]}">${esc(p.title[0])}</span>`;
-    const label = p.videoId ? "▶ Watch" : "Clip coming soon";
-    html += `<article class="proj${first ? " big" : ""}${p.noClip ? " text" : ""}" data-i="${i}" data-game="${esc(p.game)}">
-      ${p.noClip ? "" : `<button class="thumb" data-vid="${esc(p.videoId)}" aria-label="Watch ${esc(p.title)}">${media}<span class="play">${label}</span></button>`}
+    html += `<article class="proj${first ? " big" : ""} text" data-i="${i}" data-game="${esc(p.game)}">
       <div class="body">
         <span class="game">${esc(p.game)}</span>
         <h3>${esc(p.title)}</h3>
         <p>${esc(p.desc)}</p>
         <div class="chips">${(p.stats || []).map(x => `<span>${esc(x)}</span>`).join("")}</div>
-        ${p.more ? (p.noClip ? `<p>${esc(p.more)}</p>` : `<details><summary>More details</summary><p>${esc(p.more)}</p></details>`) : ""}
+        ${p.more ? `<p>${esc(p.more)}</p>` : ""}
         ${p.link ? `<a class="ext" href="${esc(p.link)}" target="_blank" rel="noopener">Play it on Roblox ↗</a>` : ""}
       </div>
     </article>`;
@@ -463,19 +481,17 @@ $("filters").addEventListener("click", e => { const c = e.target.closest(".chip"
 if ($("tl")) $("tl").innerHTML = ME.timeline.map(t =>
   `<li><div class="when">${esc(t.when)}</div><h3>${esc(t.what)}</h3><p>${esc(t.detail)}</p></li>`).join("");
 
-/* video lightbox */
-const lb = $("lb");
-$("grid").addEventListener("click", e => {
-  const t = e.target.closest(".thumb");
-  if (!t) return;
-  if (!t.dataset.vid) { toast("Add a YouTube clip for this project to play it here"); return; }
-  $("lbVid").innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${t.dataset.vid}?autoplay=1" allow="autoplay; encrypted-media; fullscreen" allowfullscreen title="Project video"></iframe>`;
-  lb.showModal();
-});
-const closeLb = () => { lb.close(); };
-$("lbClose").onclick = closeLb;
-lb.addEventListener("click", e => { if (e.target === lb) closeLb(); });
-lb.addEventListener("close", () => $("lbVid").innerHTML = "");
+/* showreel */
+const reel = $("reelBox");
+if (ME.showreel) {
+  reel.innerHTML = `<img src="https://i.ytimg.com/vi/${esc(ME.showreel)}/maxresdefault.jpg" alt="" onerror="this.src='https://i.ytimg.com/vi/${esc(ME.showreel)}/hqdefault.jpg'">
+    <button aria-label="Play showreel"><span class="pl"><i>▶</i>Play showreel</span></button>`;
+  reel.querySelector("button").onclick = () => {
+    reel.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${esc(ME.showreel)}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen title="${esc(ME.name)} showreel"></iframe>`;
+  };
+} else {
+  reel.innerHTML = `<div class="soon"><div><b>Showreel coming soon</b><span>Combat, parkour, ships and more from Black Sun and The Reach.</span></div></div>`;
+}
 
 /* copy discord */
 function toast(msg){ const t = $("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 2200); }
