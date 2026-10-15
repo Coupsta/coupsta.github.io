@@ -34,9 +34,12 @@ const ME = {
   ],
   tools: ["Luau", "Roblox Studio", "Blender", "Python"],
 
-  // Your showreel: paste the YouTube video ID (the part after "watch?v=").
-  // Leave "" until it's uploaded — a "coming soon" panel shows instead.
-  showreel: "",
+  // Showreels, one per game. id = the YouTube video ID
+  // (the part after "youtu.be/" or "watch?v="). Leave "" until it's uploaded.
+  reels: [
+    { game: "Black Sun", id: "r0v_aKAVn4c" },
+    { game: "The Reach", id: "y5kYkRkhjuY" }
+  ],
 
   // Big numbers shown under the hero.
   highlights: [
@@ -200,6 +203,7 @@ nav ul a:hover{color:var(--ink);background:var(--panel)}
 .reel .soon{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px}
 .reel .soon b{display:block;font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.03em}
 .reel .soon span{color:var(--muted)}
+.reeltabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
 
 /* sections */
 section{padding:96px 0;border-top:1px solid rgba(58,53,112,.5)}
@@ -218,11 +222,6 @@ h2{font-size:clamp(38px,5vw,60px);font-weight:800;letter-spacing:-.03em;line-hei
 .proj{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
 .proj.big{grid-column:span 2}
 .proj.hide{display:none}
-.thumb{position:relative;aspect-ratio:16/9;background:var(--panel-2);border:0;padding:0;cursor:pointer;display:block;width:100%;overflow:hidden}
-.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
-.thumb:hover img{transform:scale(1.04)}
-.thumb .ph{position:absolute;inset:0;display:grid;place-items:center;font-size:72px;font-weight:800;color:rgba(25,23,51,.55)}
-.thumb .play{position:absolute;left:16px;bottom:16px;background:rgba(25,23,51,.8);backdrop-filter:blur(6px);color:var(--ink);font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;font-family:var(--display)}
 .proj .body{padding:20px 22px 24px;display:flex;flex-direction:column;flex:1}
 .proj.text{border-top:3px solid var(--peach)}
 .proj.text .body{padding-top:26px}
@@ -232,22 +231,15 @@ h2{font-size:clamp(38px,5vw,60px);font-weight:800;letter-spacing:-.03em;line-hei
 .proj .game{font-size:13px;color:var(--peach);font-weight:600}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
 .chips span{font-size:12.5px;font-weight:600;padding:5px 10px;border-radius:8px;background:rgba(183,164,255,.12);color:var(--lilac)}
-.proj details{margin-top:14px;font-size:15px;color:var(--muted)}
-.proj summary{cursor:pointer;color:var(--ink);font-weight:600;font-size:14px;list-style:none;display:inline-flex;align-items:center;gap:6px}
-.proj summary::-webkit-details-marker{display:none}
-.proj summary::before{content:"+";display:inline-grid;place-items:center;width:20px;height:20px;border-radius:6px;background:var(--panel-2);transition:transform .2s}
-.proj details[open] summary::before{content:"−"}
-.proj details p{margin-top:10px}
 .gamehead{grid-column:1/-1;display:flex;align-items:baseline;gap:14px;margin:18px 0 -4px}
 .gamehead h3{font-size:30px;font-weight:800;letter-spacing:-.02em}
 .gamehead span{color:var(--muted)}
 .gamehead.hide{display:none}
-.proj h3{margin-top:2px;font-size:22px;font-weight:700;letter-spacing:-.01em;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-.proj h3 small{font-size:12px;font-weight:500;color:var(--peach);white-space:nowrap}
+.proj h3{margin-top:2px;font-size:22px;font-weight:700;letter-spacing:-.01em}
 .proj p{color:var(--muted);margin-top:6px;font-size:15.5px}
 .proj a.ext{display:inline-block;margin-top:12px;font-size:14px;color:var(--lilac)}
 
-/* timeline — this IS a sequence, so it's numbered by date */
+/* timeline */
 .tl{list-style:none;position:relative;max-width:720px}
 .tl::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--lilac),var(--peach))}
 .tl li{position:relative;padding:0 0 40px 44px}
@@ -276,14 +268,6 @@ h2{font-size:clamp(38px,5vw,60px);font-weight:800;letter-spacing:-.03em;line-hei
 .dc code{font-family:var(--mono);font-size:16px}
 footer{padding:40px 0 56px;color:var(--muted);font-size:14px;text-align:center}
 
-/* lightbox */
-dialog{border:0;padding:0;background:transparent;max-width:min(960px,92vw);width:100%;margin:auto}
-dialog::backdrop{background:rgba(15,13,35,.85);backdrop-filter:blur(6px)}
-dialog .vid{aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000}
-dialog iframe{width:100%;height:100%;border:0}
-dialog .close{position:absolute;top:-48px;right:0}
-dialog .inner{position:relative}
-
 .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;background:var(--mint);color:#13302a;font-weight:600;padding:12px 20px;border-radius:12px;transition:all .3s;pointer-events:none;z-index:50}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
@@ -306,6 +290,9 @@ dialog .inner{position:relative}
   section{padding:72px 0}
   .contact{padding:48px 22px}
   .dc{flex-wrap:wrap;justify-content:center;padding:14px}
+  .reel{border-radius:16px}
+  .reel .pl{font-size:15px;padding:10px 18px 10px 10px}
+  .reel .pl i{width:34px;height:34px}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -334,7 +321,7 @@ dialog .inner{position:relative}
       <h1><span id="heroName"></span><span class="role" id="heroRole"></span></h1>
       <p class="tag" id="heroTag"></p>
       <div class="btns">
-        <a class="btn primary" href="#reel">Watch the showreel</a>
+        <a class="btn primary" href="#reel">Watch the showreels</a>
         <a class="btn" href="#work">See my work</a>
       </div>
     </div>
@@ -346,12 +333,12 @@ dialog .inner{position:relative}
 
   <div class="band" id="band"></div>
 
-
   <section id="reel" style="border:0;padding-top:0">
     <div class="head">
-      <h2>Showreel</h2>
-      <p>Everything below, running in game.</p>
+      <h2>Showreels</h2>
+      <p>The systems below, running in game.</p>
     </div>
+    <div class="reeltabs" id="reelTabs" role="group" aria-label="Choose a showreel"></div>
     <div class="reel" id="reelBox"></div>
   </section>
 
@@ -389,7 +376,7 @@ dialog .inner{position:relative}
       <h2>Let's make your game.</h2>
       <p>Send me what you need, what you already have, and your deadline. I'll reply with a price and timeframe.</p>
       <div class="dc">
-        <span class="dim" style="color:var(--muted)">Discord</span>
+        <span style="color:var(--muted)">Discord</span>
         <code id="dcName"></code>
         <button class="btn primary" id="copyBtn" style="padding:10px 18px">Copy username</button>
       </div>
@@ -399,15 +386,12 @@ dialog .inner{position:relative}
 </main>
 
 <footer id="foot"></footer>
-
 <div class="toast" id="toast" role="status"></div>
 
 <script>
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const tints = ["var(--lilac)","var(--peach)","var(--mint)"];
 
-document.title = `${ME.name} · ${ME.role}`;
 $("navName").textContent = ME.name;
 $("heroName").textContent = ME.name;
 $("heroRole").textContent = ME.role;
@@ -443,18 +427,17 @@ $("tree").addEventListener("click", e => {
   if (!b) return;
   const card = document.querySelector(`.proj[data-i="${b.dataset.i}"]`);
   setFilter("All");
-  const d = card.querySelector("details"); if (d) d.open = true;
   card.scrollIntoView({ behavior: "smooth", block: "center" });
 });
 
 /* project cards, grouped under a heading per game */
 let html = "";
-ME.games.forEach((g, gi) => {
+ME.games.forEach(g => {
   html += `<div class="gamehead" data-game="${esc(g.name)}"><h3>${esc(g.name)}</h3><span>${esc(g.blurb)}</span></div>`;
   ME.projects.forEach((p, i) => {
     if (p.game !== g.name) return;
     const first = ME.projects.findIndex(q => q.game === g.name) === i;
-    html += `<article class="proj${first ? " big" : ""} text" data-i="${i}" data-game="${esc(p.game)}">
+    html += `<article class="proj text${first ? " big" : ""}" data-i="${i}" data-game="${esc(p.game)}">
       <div class="body">
         <span class="game">${esc(p.game)}</span>
         <h3>${esc(p.title)}</h3>
@@ -472,7 +455,7 @@ $("grid").innerHTML = html;
 ["All", ...groups].forEach(g => $("filters").insertAdjacentHTML("beforeend",
   `<button class="chip" aria-pressed="${g === "All"}" data-g="${esc(g)}">${esc(g)}</button>`));
 function setFilter(g){
-  document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c.dataset.g === g));
+  document.querySelectorAll("#filters .chip").forEach(c => c.setAttribute("aria-pressed", c.dataset.g === g));
   document.querySelectorAll(".proj,.gamehead").forEach(c => c.classList.toggle("hide", g !== "All" && c.dataset.game !== g));
 }
 $("filters").addEventListener("click", e => { const c = e.target.closest(".chip"); if (c) setFilter(c.dataset.g); });
@@ -481,17 +464,27 @@ $("filters").addEventListener("click", e => { const c = e.target.closest(".chip"
 if ($("tl")) $("tl").innerHTML = ME.timeline.map(t =>
   `<li><div class="when">${esc(t.when)}</div><h3>${esc(t.what)}</h3><p>${esc(t.detail)}</p></li>`).join("");
 
-/* showreel */
+/* showreels, one per game */
 const reel = $("reelBox");
-if (ME.showreel) {
-  reel.innerHTML = `<img src="https://i.ytimg.com/vi/${esc(ME.showreel)}/maxresdefault.jpg" alt="" onerror="this.src='https://i.ytimg.com/vi/${esc(ME.showreel)}/hqdefault.jpg'">
-    <button aria-label="Play showreel"><span class="pl"><i>▶</i>Play showreel</span></button>`;
-  reel.querySelector("button").onclick = () => {
-    reel.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${esc(ME.showreel)}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen title="${esc(ME.name)} showreel"></iframe>`;
-  };
-} else {
-  reel.innerHTML = `<div class="soon"><div><b>Showreel coming soon</b><span>Combat, parkour, ships and more from Black Sun and The Reach.</span></div></div>`;
+function showReel(r){
+  document.querySelectorAll("#reelTabs .chip").forEach(c => c.setAttribute("aria-pressed", c.dataset.g === r.game));
+  if (r.id) {
+    reel.innerHTML = `<img src="https://i.ytimg.com/vi/${esc(r.id)}/maxresdefault.jpg" alt="" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${esc(r.id)}/hqdefault.jpg'">
+      <button aria-label="Play ${esc(r.game)} showreel"><span class="pl"><i>▶</i>Play ${esc(r.game)}</span></button>`;
+    reel.querySelector("button").onclick = () => {
+      reel.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${esc(r.id)}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen title="${esc(r.game)} showreel"></iframe>`;
+    };
+  } else {
+    reel.innerHTML = `<div class="soon"><div><b>${esc(r.game)} showreel coming soon</b><span>Check back shortly.</span></div></div>`;
+  }
 }
+$("reelTabs").innerHTML = ME.reels.map(r =>
+  `<button class="chip" data-g="${esc(r.game)}" aria-pressed="false">${esc(r.game)}${r.id ? "" : " · soon"}</button>`).join("");
+$("reelTabs").addEventListener("click", e => {
+  const c = e.target.closest(".chip"); if (c) showReel(ME.reels.find(r => r.game === c.dataset.g));
+});
+if (ME.reels.length < 2) $("reelTabs").hidden = true;
+showReel(ME.reels.find(r => r.id) || ME.reels[0]);
 
 /* copy discord */
 function toast(msg){ const t = $("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 2200); }
